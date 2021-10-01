@@ -1,4 +1,3 @@
-let someText = 'Hello, friend!';
 let title = 'Калькулятор разработки';
 let screens = 'Простые, Сложные, Интерактивные';
 let screenPrice = 100;
