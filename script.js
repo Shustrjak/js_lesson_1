@@ -1,9 +1,9 @@
-let title = 'Калькулятор разработки';
-let screens = 'Простые, Сложные, Интерактивные';
-let screenPrice = 100;
-let rollback = 50;
-let fullPrice = 10000;
-let adaptive = false;
+const title = 'Калькулятор разработки';
+const screens = 'Простые, Сложные, Интерактивные';
+const screenPrice = 100;
+const rollback = 50;
+const fullPrice = 10000;
+const adaptive = false;
 
 
 console.log(title, fullPrice, adaptive);
