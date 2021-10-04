@@ -9,7 +9,7 @@ const servicePrice1 = parseInt(prompt('Сколько будет стоить?')
 const service2 = prompt('Какой дополнительный тип услуг нужен?');
 const servicePrice2 = parseInt(prompt('Сколько будет стоить?'));
 const fullPrice = screenPrice + servicePrice1 + servicePrice2;
-const servicePercentPrice = fullPrice / 100 * rollback;
+const servicePercentPrice = fullPrice - Math.ceil(fullPrice * (rollback / 100));
 
 // вариант 1 вывод в консоль
 switch (true) {
@@ -46,5 +46,5 @@ console.log(screens.length);
 console.log('Стоимость верстки экранов ' + screenPrice + ' рублей/долларов/гривен/юани.');
 console.log('Стоимость разработки сайта ' + fullPrice + ' рублей/долларов/гривен/юани.');
 console.log(screens.toLowerCase().split(', '));
-console.log( fullPrice - Math.ceil(fullPrice * (rollback / 100)));
+console.log( servicePercentPrice);
 
