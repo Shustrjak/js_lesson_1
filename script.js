@@ -1,7 +1,18 @@
 'use strict';
 const title = prompt("Как называется ваш проект?");
 const screens = prompt("Какие типы экранов нужно разработать?", "пример: Простые, Сложные, Интерактивные");
-const screenPrice = parseFloat(prompt("Сколько будет стоить данная работа?", "12000"));
+
+let screenPrice;
+
+function isNumber(num){
+return !isNaN(parseFloat(num)) && isFinite(num) && num !== null;
+}
+
+do{
+    screenPrice = parseFloat(prompt("Сколько будет стоить данная работа?"));
+}
+while(!isNumber(screenPrice));
+
 const rollback = 36;
 const adaptive = confirm("Нужен ли адаптив на сайте?"); 
 const allServicePrices = function getAllServicePrices() {
@@ -48,6 +59,7 @@ const getRollbackMessage = function (price) {
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
+
 console.log(fullPrice);
 console.log(screens.toLowerCase().split(', '));
 console.log(getRollbackMessage(fullPrice));
