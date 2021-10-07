@@ -1,20 +1,27 @@
 'use strict';
 const title = prompt("Как называется ваш проект?");
 const screens = prompt("Какие типы экранов нужно разработать?", "пример: Простые, Сложные, Интерактивные");
-const screenPrice = parseInt(prompt("Сколько будет стоить данная работа?", "12000"));
+const screenPrice = parseFloat(prompt("Сколько будет стоить данная работа?", "12000"));
 const rollback = 36;
 const adaptive = confirm("Нужен ли адаптив на сайте?"); 
-const service1 = prompt('Какой дополнительный тип услуг нужен?');
-const servicePrice1 = parseInt(prompt('Сколько будет стоить?'));
-const service2 = prompt('Какой дополнительный тип услуг нужен?');
-const servicePrice2 = parseInt(prompt('Сколько будет стоить?'));
-const allServicePrices = function getAllServicePrices(a, b) {
-    return a + b;
+const allServicePrices = function getAllServicePrices() {
+	let sum = 0;
+	for (let i = 0; i < 2; i++){
+
+		if (i===0){
+			const service1 = prompt('Какой первый дополнительный тип услуг нужен?');
+		} else if(i===1){
+			const service2 = prompt('Какой второй дополнительный тип услуг нужен?');
+		}
+
+		sum += parseFloat(prompt('Сколько будет стоить?'));
+	}
+    return sum;
 };
-const fullPrice = getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2));
+const fullPrice = getFullPrice(screenPrice, allServicePrices());
 const servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
-function getFullPrice(a, b) {
-    return a + b;
+function getFullPrice(a, callback) {
+    return a + callback;
 }
 function getTitle(text) {
     text = text.trim();
@@ -41,6 +48,7 @@ const getRollbackMessage = function (price) {
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
+console.log(fullPrice);
 console.log(screens.toLowerCase().split(', '));
 console.log(getRollbackMessage(fullPrice));
 console.log(getServicePercentPrices(fullPrice, rollback));
