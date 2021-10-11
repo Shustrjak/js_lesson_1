@@ -1,4 +1,11 @@
 'use strict';
+const isNumber = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num) && num !== null;
+};
+function getTitle(text) {
+    text = text.trim();
+    return text[0].toUpperCase() + text.slice(1);
+}
 const appData = {
     title: '',
     screens: '',
@@ -20,6 +27,39 @@ const appData = {
         
     },
     start: function () {
+        const getAllServicePrices = function () {
+            let sum = 0;
+            for (let i = 0; i < 2; i++) {
+                if (i === 0) {
+                    appData.service1 = prompt('Какой первый дополнительный тип услуг нужен?');
+                } else if (i === 1) {
+                    appData.service2 = prompt('Какой второй дополнительный тип услуг нужен?');
+                }
+                sum += parseFloat(prompt('Сколько будет стоить?'));
+            }
+            return sum;
+        };
+        function getFullPrice() {
+            return appData.screenPrice + appData.allServicePrices;
+        }
+        function getServicePercentPrices(price, rollback) {
+            return price - Math.ceil(price * (rollback / 100));
+        }
+        function getTitle(text) {
+            text = text.trim();
+            return text[0].toUpperCase() + text.slice(1);
+        }
+        function getRollbackMessage (price) {
+            if (price >= 30000) {
+                return 'Даем скидку 10%';
+            } else if (price >= 15000 && price < 30000) {
+                return 'Даем скидку 5%';
+            } else if (price >= 0 && price < 15000) {
+                return 'Скидка не предусмотрена';
+            } else {
+                return 'Что то пошло не так';
+            }
+        }
         appData.asking();
         appData.allServicePrices = getAllServicePrices();
         appData.fullPrice = getFullPrice();
@@ -37,9 +77,7 @@ const appData = {
     }
 
 };
-const isNumber = function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num) && num !== null;
-};
+
 
 
 const getAllServicePrices = function () {
@@ -63,10 +101,7 @@ const getServicePercentPrices = function (price, rollback) {
     return price - Math.ceil(price * (rollback / 100));
 };
 
-function getTitle(text) {
-    text = text.trim();
-    return text[0].toUpperCase() + text.slice(1);
-}
+
 const getRollbackMessage = function (price) {
     if (price >= 30000) {
         return 'Даем скидку 10%';
